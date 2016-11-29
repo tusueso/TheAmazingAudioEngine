@@ -1,8 +1,10 @@
 //
-//  AEPlaythroughChannel.h
+//  AERealtimeWatchdog.h
 //  TheAmazingAudioEngine
 //
-//  Created by Michael Tyson on 21/04/2012.
+//  Created by Michael Tyson on 12/06/2016.
+//  Idea by Taylor Holliday
+//  Copyright © 2016 A Tasty Pixel. All rights reserved.
 //
 //  This software is provided 'as-is', without any express or implied
 //  warranty.  In no event will the authors be held liable for any damages
@@ -23,31 +25,9 @@
 //  3. This notice may not be removed or altered from any source distribution.
 //
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+#ifdef DEBUG
 
-#import <Foundation/Foundation.h>
-#import "TheAmazingAudioEngine.h"
+// Uncomment the following to enable the realtime watchdog
+// #define REALTIME_WATCHDOG_ENABLED 1
 
-/*!
- * Playthrough channel, used for live monitoring of input
- */
-@interface AEPlaythroughChannel : NSObject <AEAudioPlayable, AEAudioReceiver>
-
-/*!
- * Initialise
- */
-- (instancetype)init;
-
-- (id)initWithAudioController:(AEAudioController*)audioController __deprecated_msg("use 'init' instead");
-
-@property (nonatomic, assign) float volume;
-@property (nonatomic, assign) float pan;
-@property (nonatomic, assign) BOOL channelIsMuted;
-@property (nonatomic, readonly) AudioStreamBasicDescription audioDescription;
-@end
-
-#ifdef __cplusplus
-}
 #endif

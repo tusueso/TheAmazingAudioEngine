@@ -55,10 +55,12 @@ static const NSTimeInterval kSynchronousTimeoutInterval  = 1.0;
 
 @end
 
-@interface AEMessageQueue ()
+@interface AEMessageQueue () {
+    pthread_mutex_t _mutex;
+    BOOL _holdRealtimeProcessing;
+}
 
 @property (nonatomic, readonly) uint64_t lastProcessTime;
-
 @end
 
 @implementation AEMessageQueue {
@@ -73,7 +75,7 @@ static const NSTimeInterval kSynchronousTimeoutInterval  = 1.0;
     
     TPCircularBufferInit(&_realtimeThreadMessageBuffer, numBytes);
     TPCircularBufferInit(&_mainThreadMessageBuffer, numBytes);
-    
+    pthread_mutex_init(&_mutex, NULL);
     return self;
 }
 
@@ -82,9 +84,10 @@ static const NSTimeInterval kSynchronousTimeoutInterval  = 1.0;
 }
 
 - (void)dealloc {
+    [self stopPolling];
     TPCircularBufferCleanup(&_realtimeThreadMessageBuffer);
     TPCircularBufferCleanup(&_mainThreadMessageBuffer);
-    [self stopPolling];
+    pthread_mutex_destroy(&_mutex);
 }
 
 - (void)startPolling {
@@ -111,6 +114,15 @@ static const NSTimeInterval kSynchronousTimeoutInterval  = 1.0;
 void AEMessageQueueProcessMessagesOnRealtimeThread(__unsafe_unretained AEMessageQueue *THIS) {
     // Only call this from the realtime thread, or the main thread if realtime thread not yet running
 
+    if ( pthread_mutex_trylock(&THIS->_mutex) != 0 ) {
+        return;
+    }
+    
+    if ( THIS->_holdRealtimeProcessing ) {
+        pthread_mutex_unlock(&THIS->_mutex);
+        return;
+    }
+    
     THIS->_lastProcessTime = AECurrentTimeInHostTicks();
 
     int32_t availableBytes;
@@ -130,15 +142,27 @@ void AEMessageQueueProcessMessagesOnRealtimeThread(__unsafe_unretained AEMessage
 
         int32_t availableBytes;
         message_t *reply = TPCircularBufferHead(&THIS->_mainThreadMessageBuffer, &availableBytes);
-        assert(availableBytes >= sizeof(message_t));
+        if ( availableBytes < sizeof(message_t) ) {
+#ifdef DEBUG
+            NSLog(@"AEMessageBuffer: Integrity problem, insufficient space in main thread messaging buffer");
+#endif
+            pthread_mutex_unlock(&THIS->_mutex);
+            return;
+        }
         memcpy(reply, &message, sizeof(message_t));
         TPCircularBufferProduce(&THIS->_mainThreadMessageBuffer, sizeof(message_t));
         
         buffer++;
     }
+    
+    pthread_mutex_unlock(&THIS->_mutex);
 }
 
--(void)pollForMessageResponses {
+-(void)processMainThreadMessages {
+    [self processMainThreadMessagesMatchingResponseBlock:nil];
+}
+
+-(void)processMainThreadMessagesMatchingResponseBlock:(void (^)())responseBlock {
     pthread_t thread = pthread_self();
     BOOL isMainThread = [NSThread isMainThread];
 
@@ -164,6 +188,9 @@ void AEMessageQueueProcessMessagesOnRealtimeThread(__unsafe_unretained AEMessage
                     
                     if ( (buffer->sourceThread && buffer->sourceThread != thread) && (buffer->sourceThread == NULL && !isMainThread) ) {
                         // Skip this message, it's for a different thread
+                        hasUnservicedMessages = YES;
+                    } else if ( responseBlock && buffer->responseBlock != responseBlock ) {
+                        // Skip this message, it doesn't match
                         hasUnservicedMessages = YES;
                     } else {
                         // Service this message
@@ -247,14 +274,15 @@ void AEMessageQueueProcessMessagesOnRealtimeThread(__unsafe_unretained AEMessage
 
 - (BOOL)performSynchronousMessageExchangeWithBlock:(void (^)())block {
     __block BOOL finished = NO;
+    void (^responseBlock)() = ^{ finished = YES; };
     [self performAsynchronousMessageExchangeWithBlock:block
-                                        responseBlock:^{ finished = YES; }
+                                        responseBlock:responseBlock
                                          sourceThread:pthread_self()];
 
     // Wait for response
     uint64_t giveUpTime = AECurrentTimeInHostTicks() + AEHostTicksFromSeconds(kSynchronousTimeoutInterval);
     while ( !finished && AECurrentTimeInHostTicks() < giveUpTime ) {
-        [self pollForMessageResponses];
+        [self processMainThreadMessagesMatchingResponseBlock:responseBlock];
         if ( finished ) break;
         [NSThread sleepForTimeInterval: kActiveMessagingPollDuration];
     }
@@ -266,6 +294,18 @@ void AEMessageQueueProcessMessagesOnRealtimeThread(__unsafe_unretained AEMessage
     return finished;
 }
 
+- (void)beginMessageExchangeBlock {
+    pthread_mutex_lock(&_mutex);
+    _holdRealtimeProcessing = YES;
+    pthread_mutex_unlock(&_mutex);
+}
+
+- (void)endMessageExchangeBlock {
+    pthread_mutex_lock(&_mutex);
+    _holdRealtimeProcessing = NO;
+    pthread_mutex_unlock(&_mutex);
+}
+
 void AEMessageQueueSendMessageToMainThread(__unsafe_unretained AEMessageQueue *THIS,
                                            AEMessageQueueMessageHandler        handler,
                                            void                               *userInfo,
@@ -273,7 +313,12 @@ void AEMessageQueueSendMessageToMainThread(__unsafe_unretained AEMessageQueue *T
     
     int32_t availableBytes;
     message_t *message = TPCircularBufferHead(&THIS->_mainThreadMessageBuffer, &availableBytes);
-    assert(availableBytes >= sizeof(message_t) + userInfoLength);
+    if ( availableBytes < sizeof(message_t) + userInfoLength ) {
+#ifdef DEBUG
+        NSLog(@"AEMessageBuffer: Integrity problem, insufficient space in main thread messaging buffer");
+#endif
+        return;
+    }
     memset(message, 0, sizeof(message_t));
     message->handler                = handler;
     message->userInfoLength         = userInfoLength;
@@ -310,7 +355,7 @@ static BOOL AEMessageQueueHasPendingMainThreadMessages(__unsafe_unretained AEMes
                     AEMessageQueueProcessMessagesOnRealtimeThread(_messageQueue);
                 }
                 if ( AEMessageQueueHasPendingMainThreadMessages(_messageQueue) ) {
-                    [_messageQueue performSelectorOnMainThread:@selector(pollForMessageResponses) withObject:nil waitUntilDone:NO];
+                    [_messageQueue performSelectorOnMainThread:@selector(processMainThreadMessages) withObject:nil waitUntilDone:NO];
                 }
                 usleep(_pollInterval*1.0e6);
             }
