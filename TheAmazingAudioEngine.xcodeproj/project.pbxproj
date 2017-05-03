@@ -79,17 +79,11 @@
 		17BB5B8E1BECD1D9007A2892 /* AEVarispeedFilter.h in Sources */ = {isa = PBXBuildFile; fileRef = 4C70F9981BB0D0900064CF73 /* AEVarispeedFilter.h */; };
 		17BB5B8F1BECD1D9007A2892 /* AEVarispeedFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C70F9991BB0D0900064CF73 /* AEVarispeedFilter.m */; };
 		17BB5B901BECD1D9007A2892 /* AEMixerBuffer.h in Sources */ = {isa = PBXBuildFile; fileRef = 4C8A0F3D1540BBD300307CB6 /* AEMixerBuffer.h */; };
-		17BB5B911BECD1D9007A2892 /* AEMixerBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8A0F3E1540BBD300307CB6 /* AEMixerBuffer.m */; };
 		17BB5B921BECD1D9007A2892 /* AELimiter.h in Sources */ = {isa = PBXBuildFile; fileRef = 4CA689B11541EF4A00AF8DDD /* AELimiter.h */; };
-		17BB5B931BECD1D9007A2892 /* AELimiter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA689B21541EF4A00AF8DDD /* AELimiter.m */; };
 		17BB5B941BECD1D9007A2892 /* AELimiterFilter.h in Sources */ = {isa = PBXBuildFile; fileRef = 4CA689BC1542D4FE00AF8DDD /* AELimiterFilter.h */; };
-		17BB5B951BECD1D9007A2892 /* AELimiterFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA689BD1542D4FE00AF8DDD /* AELimiterFilter.m */; };
 		17BB5B961BECD1D9007A2892 /* AEExpanderFilter.h in Sources */ = {isa = PBXBuildFile; fileRef = 4CA689C315447E3100AF8DDD /* AEExpanderFilter.h */; };
-		17BB5B971BECD1D9007A2892 /* AEExpanderFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA689C415447E3100AF8DDD /* AEExpanderFilter.m */; };
 		17BB5B981BECD1D9007A2892 /* AEPlaythroughChannel.h in Sources */ = {isa = PBXBuildFile; fileRef = 4CA689BF1542DC8C00AF8DDD /* AEPlaythroughChannel.h */; };
-		17BB5B991BECD1D9007A2892 /* AEPlaythroughChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA689C01542DC8C00AF8DDD /* AEPlaythroughChannel.m */; };
 		17BB5B9A1BECD1D9007A2892 /* AERecorder.h in Sources */ = {isa = PBXBuildFile; fileRef = 4C38DC501545840E009F4454 /* AERecorder.h */; };
-		17BB5B9B1BECD1D9007A2892 /* AERecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C38DC511545840E009F4454 /* AERecorder.m */; };
 		17BB5B9D1BECD25D007A2892 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17BB5B9C1BECD25D007A2892 /* Foundation.framework */; };
 		17BB5B9F1BECD337007A2892 /* TheAmazingAudioEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CAD569315162822003CE861 /* TheAmazingAudioEngine.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		17BB5BA01BECD337007A2892 /* AEAudioController.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CAD56801516281D003CE861 /* AEAudioController.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -194,6 +188,12 @@
 		7A5687311B5461BE00243427 /* AEFloatConverter.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C8AED0216B3644500958034 /* AEFloatConverter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7A5687321B5461BE00243427 /* AEAudioFileLoaderOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C49FE30153DC21A008725E0 /* AEAudioFileLoaderOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7A5687341B5461BE00243427 /* AEBlockScheduler.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C0944FF16FBD7460054608E /* AEBlockScheduler.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F6A5CD961DED707D0053F204 /* AERecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C38DC511545840E009F4454 /* AERecorder.m */; };
+		F6A5CD971DED70860053F204 /* AEMixerBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8A0F3E1540BBD300307CB6 /* AEMixerBuffer.m */; };
+		F6A5CD981DED708A0053F204 /* AELimiter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA689B21541EF4A00AF8DDD /* AELimiter.m */; };
+		F6A5CD991DED708D0053F204 /* AELimiterFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA689BD1542D4FE00AF8DDD /* AELimiterFilter.m */; };
+		F6A5CD9A1DED70920053F204 /* AEExpanderFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA689C415447E3100AF8DDD /* AEExpanderFilter.m */; };
+		F6A5CD9B1DED70950053F204 /* AEPlaythroughChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA689C01542DC8C00AF8DDD /* AEPlaythroughChannel.m */; };
 		F9C23C1E1BA979050060718F /* AEMessageQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = F9C23C1C1BA979050060718F /* AEMessageQueue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F9C23C1F1BA979050060718F /* AEMessageQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = F9C23C1C1BA979050060718F /* AEMessageQueue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F9C23C201BA979050060718F /* AEMessageQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = F9C23C1D1BA979050060718F /* AEMessageQueue.m */; };
@@ -755,17 +755,11 @@
 				17BB5B8E1BECD1D9007A2892 /* AEVarispeedFilter.h in Sources */,
 				17BB5B8F1BECD1D9007A2892 /* AEVarispeedFilter.m in Sources */,
 				17BB5B901BECD1D9007A2892 /* AEMixerBuffer.h in Sources */,
-				17BB5B911BECD1D9007A2892 /* AEMixerBuffer.m in Sources */,
 				17BB5B921BECD1D9007A2892 /* AELimiter.h in Sources */,
-				17BB5B931BECD1D9007A2892 /* AELimiter.m in Sources */,
 				17BB5B941BECD1D9007A2892 /* AELimiterFilter.h in Sources */,
-				17BB5B951BECD1D9007A2892 /* AELimiterFilter.m in Sources */,
 				17BB5B961BECD1D9007A2892 /* AEExpanderFilter.h in Sources */,
-				17BB5B971BECD1D9007A2892 /* AEExpanderFilter.m in Sources */,
 				17BB5B981BECD1D9007A2892 /* AEPlaythroughChannel.h in Sources */,
-				17BB5B991BECD1D9007A2892 /* AEPlaythroughChannel.m in Sources */,
 				17BB5B9A1BECD1D9007A2892 /* AERecorder.h in Sources */,
-				17BB5B9B1BECD1D9007A2892 /* AERecorder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -775,12 +769,15 @@
 			files = (
 				4C215D081523A8E500D36CAD /* AEAudioController.m in Sources */,
 				4C70F9A51BB0D2FE0064CF73 /* AEHighPassFilter.m in Sources */,
+				F6A5CD991DED708D0053F204 /* AELimiterFilter.m in Sources */,
 				4C215D091523A8E500D36CAD /* AEAudioFilePlayer.m in Sources */,
 				4C215D0A1523A8E500D36CAD /* AEUtilities.m in Sources */,
 				4C70F9AD1BB0D2FE0064CF73 /* AENewTimePitchFilter.m in Sources */,
 				4CCAFEFF1C0BCFF100B87416 /* AEAudioBufferManager.m in Sources */,
 				4C70F9B31BB0D2FE0064CF73 /* AEReverbFilter.m in Sources */,
 				4C70F99F1BB0D2FE0064CF73 /* AEDelayFilter.m in Sources */,
+				F6A5CD961DED707D0053F204 /* AERecorder.m in Sources */,
+				F6A5CD981DED708A0053F204 /* AELimiter.m in Sources */,
 				4C70F9B11BB0D2FE0064CF73 /* AEPeakLimiterFilter.m in Sources */,
 				4C70F9B71BB0D2FE0064CF73 /* AEVarispeedFilter.m in Sources */,
 				4C70F9A91BB0D2FE0064CF73 /* AELowPassFilter.m in Sources */,
@@ -791,14 +788,17 @@
 				4C70F99D1BB0D2FE0064CF73 /* AEBandpassFilter.m in Sources */,
 				4C2886521557DB800074175A /* AEAudioController+Audiobus.m in Sources */,
 				4CB2273D1D0E5FD100B1135F /* AERealtimeWatchdog.m in Sources */,
+				F6A5CD971DED70860053F204 /* AEMixerBuffer.m in Sources */,
 				4C25747415F0D8E100D232E8 /* TPCircularBuffer.c in Sources */,
 				4C70F9A31BB0D2FE0064CF73 /* AEDynamicsProcessorFilter.m in Sources */,
 				4C70F9AB1BB0D2FE0064CF73 /* AELowShelfFilter.m in Sources */,
 				4C698CFD162B02EF008B159D /* TPCircularBuffer+AudioBufferList.c in Sources */,
+				F6A5CD9A1DED70920053F204 /* AEExpanderFilter.m in Sources */,
 				4C4B11F516833FDD00A3BA2E /* AEBlockChannel.m in Sources */,
 				4C8AED0516B3644500958034 /* AEFloatConverter.m in Sources */,
 				4CEC0EBA16B5294300D11ED9 /* AEBlockFilter.m in Sources */,
 				4C70F9A71BB0D2FE0064CF73 /* AEHighShelfFilter.m in Sources */,
+				F6A5CD9B1DED70950053F204 /* AEPlaythroughChannel.m in Sources */,
 				4C99588616BB74720011FB01 /* AEAudioUnitChannel.m in Sources */,
 				4CB2273B1D0E5FD100B1135F /* AERealtimeWatchdog-simulator-x86_64.s in Sources */,
 				4C99588E16C0825F0011FB01 /* AEAudioUnitFilter.m in Sources */,
