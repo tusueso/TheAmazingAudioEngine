@@ -80,6 +80,12 @@ typedef void (^AEBlockChannelBlock)(const AudioTimeStamp     *time,
  */
 @property (nonatomic, assign) AudioStreamBasicDescription audioDescription;
 
+/*
+ *  the power level, averaged since last call
+ */
+- (float) averagePowerLevel;
+- (float) normalizedAveragePowerLevel;
+
 @end
 
 #ifdef __cplusplus

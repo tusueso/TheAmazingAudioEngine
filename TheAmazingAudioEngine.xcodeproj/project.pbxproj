@@ -24,11 +24,11 @@
 		17BB5B571BECD1D9007A2892 /* AEUtilities.h in Sources */ = {isa = PBXBuildFile; fileRef = 4C12CC98151D1EDA00562E2A /* AEUtilities.h */; };
 		17BB5B581BECD1D9007A2892 /* AEUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C12CC99151D1EDA00562E2A /* AEUtilities.m */; };
 		17BB5B591BECD1D9007A2892 /* AEBlockChannel.h in Sources */ = {isa = PBXBuildFile; fileRef = 4C4B11F216833FDD00A3BA2E /* AEBlockChannel.h */; };
-		17BB5B5A1BECD1D9007A2892 /* AEBlockChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4B11F316833FDD00A3BA2E /* AEBlockChannel.m */; };
+		17BB5B5A1BECD1D9007A2892 /* AEBlockChannel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4C4B11F316833FDD00A3BA2E /* AEBlockChannel.mm */; };
 		17BB5B5B1BECD1D9007A2892 /* AEAudioUnitFilter.h in Sources */ = {isa = PBXBuildFile; fileRef = 4C99588B16C0825E0011FB01 /* AEAudioUnitFilter.h */; };
 		17BB5B5C1BECD1D9007A2892 /* AEAudioUnitFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C99588C16C0825F0011FB01 /* AEAudioUnitFilter.m */; };
 		17BB5B5D1BECD1D9007A2892 /* AEAudioUnitChannel.h in Sources */ = {isa = PBXBuildFile; fileRef = 4C99588316BB74720011FB01 /* AEAudioUnitChannel.h */; };
-		17BB5B5E1BECD1D9007A2892 /* AEAudioUnitChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C99588416BB74720011FB01 /* AEAudioUnitChannel.m */; };
+		17BB5B5E1BECD1D9007A2892 /* AEAudioUnitChannel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4C99588416BB74720011FB01 /* AEAudioUnitChannel.mm */; };
 		17BB5B5F1BECD1D9007A2892 /* AEBlockFilter.h in Sources */ = {isa = PBXBuildFile; fileRef = 4CEC0EB716B5294200D11ED9 /* AEBlockFilter.h */; };
 		17BB5B601BECD1D9007A2892 /* AEBlockFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEC0EB816B5294300D11ED9 /* AEBlockFilter.m */; };
 		17BB5B611BECD1D9007A2892 /* AEBlockAudioReceiver.h in Sources */ = {isa = PBXBuildFile; fileRef = 4C456B8B16D59365008ED99D /* AEBlockAudioReceiver.h */; };
@@ -125,7 +125,7 @@
 		4C49FE32153DC21A008725E0 /* AEAudioFileLoaderOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C49FE30153DC21A008725E0 /* AEAudioFileLoaderOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4C49FE34153DC21A008725E0 /* AEAudioFileLoaderOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C49FE31153DC21A008725E0 /* AEAudioFileLoaderOperation.m */; };
 		4C4B11F416833FDD00A3BA2E /* AEBlockChannel.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C4B11F216833FDD00A3BA2E /* AEBlockChannel.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4C4B11F516833FDD00A3BA2E /* AEBlockChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4B11F316833FDD00A3BA2E /* AEBlockChannel.m */; };
+		4C4B11F516833FDD00A3BA2E /* AEBlockChannel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4C4B11F316833FDD00A3BA2E /* AEBlockChannel.mm */; };
 		4C698CFD162B02EF008B159D /* TPCircularBuffer+AudioBufferList.c in Sources */ = {isa = PBXBuildFile; fileRef = 4C698CF9162B02EF008B159D /* TPCircularBuffer+AudioBufferList.c */; };
 		4C70F99D1BB0D2FE0064CF73 /* AEBandpassFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C70F97D1BB0D0900064CF73 /* AEBandpassFilter.m */; };
 		4C70F99F1BB0D2FE0064CF73 /* AEDelayFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C70F97F1BB0D0900064CF73 /* AEDelayFilter.m */; };
@@ -143,7 +143,7 @@
 		4C8AED0416B3644500958034 /* AEFloatConverter.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C8AED0216B3644500958034 /* AEFloatConverter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4C8AED0516B3644500958034 /* AEFloatConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8AED0316B3644500958034 /* AEFloatConverter.m */; };
 		4C99588516BB74720011FB01 /* AEAudioUnitChannel.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C99588316BB74720011FB01 /* AEAudioUnitChannel.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4C99588616BB74720011FB01 /* AEAudioUnitChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C99588416BB74720011FB01 /* AEAudioUnitChannel.m */; };
+		4C99588616BB74720011FB01 /* AEAudioUnitChannel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4C99588416BB74720011FB01 /* AEAudioUnitChannel.mm */; };
 		4C99588D16C0825F0011FB01 /* AEAudioUnitFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C99588B16C0825E0011FB01 /* AEAudioUnitFilter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4C99588E16C0825F0011FB01 /* AEAudioUnitFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C99588C16C0825F0011FB01 /* AEAudioUnitFilter.m */; };
 		4CB2273A1D0E5FD100B1135F /* AERealtimeWatchdog-arm64.s in Sources */ = {isa = PBXBuildFile; fileRef = 4CB227361D0E5FD100B1135F /* AERealtimeWatchdog-arm64.s */; settings = {COMPILER_FLAGS = "-fno-modules"; }; };
@@ -163,9 +163,9 @@
 		7A5687161B54617200243427 /* AEAudioFilePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD56AA15163488003CE861 /* AEAudioFilePlayer.m */; };
 		7A5687171B54617200243427 /* AEAudioFileWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C38DC5415458AB1009F4454 /* AEAudioFileWriter.m */; };
 		7A5687181B54617200243427 /* AEUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C12CC99151D1EDA00562E2A /* AEUtilities.m */; };
-		7A5687191B54617200243427 /* AEBlockChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4B11F316833FDD00A3BA2E /* AEBlockChannel.m */; };
+		7A5687191B54617200243427 /* AEBlockChannel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4C4B11F316833FDD00A3BA2E /* AEBlockChannel.mm */; };
 		7A56871A1B54617200243427 /* AEAudioUnitFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C99588C16C0825F0011FB01 /* AEAudioUnitFilter.m */; };
-		7A56871B1B54617200243427 /* AEAudioUnitChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C99588416BB74720011FB01 /* AEAudioUnitChannel.m */; };
+		7A56871B1B54617200243427 /* AEAudioUnitChannel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4C99588416BB74720011FB01 /* AEAudioUnitChannel.mm */; };
 		7A56871C1B54617200243427 /* AEBlockFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEC0EB816B5294300D11ED9 /* AEBlockFilter.m */; };
 		7A56871D1B54617200243427 /* AEBlockAudioReceiver.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C456B8C16D59365008ED99D /* AEBlockAudioReceiver.m */; };
 		7A56871E1B54617200243427 /* AEFloatConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8AED0316B3644500958034 /* AEFloatConverter.m */; };
@@ -242,7 +242,7 @@
 		4C49FE30153DC21A008725E0 /* AEAudioFileLoaderOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AEAudioFileLoaderOperation.h; sourceTree = "<group>"; };
 		4C49FE31153DC21A008725E0 /* AEAudioFileLoaderOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AEAudioFileLoaderOperation.m; sourceTree = "<group>"; };
 		4C4B11F216833FDD00A3BA2E /* AEBlockChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AEBlockChannel.h; sourceTree = "<group>"; };
-		4C4B11F316833FDD00A3BA2E /* AEBlockChannel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AEBlockChannel.m; sourceTree = "<group>"; };
+		4C4B11F316833FDD00A3BA2E /* AEBlockChannel.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AEBlockChannel.mm; sourceTree = "<group>"; };
 		4C698CF8162B02EF008B159D /* README.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.markdown; sourceTree = "<group>"; };
 		4C698CF9162B02EF008B159D /* TPCircularBuffer+AudioBufferList.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "TPCircularBuffer+AudioBufferList.c"; sourceTree = "<group>"; };
 		4C698CFA162B02EF008B159D /* TPCircularBuffer+AudioBufferList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TPCircularBuffer+AudioBufferList.h"; sourceTree = "<group>"; };
@@ -279,7 +279,7 @@
 		4C8AED0216B3644500958034 /* AEFloatConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AEFloatConverter.h; sourceTree = "<group>"; };
 		4C8AED0316B3644500958034 /* AEFloatConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AEFloatConverter.m; sourceTree = "<group>"; };
 		4C99588316BB74720011FB01 /* AEAudioUnitChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AEAudioUnitChannel.h; sourceTree = "<group>"; };
-		4C99588416BB74720011FB01 /* AEAudioUnitChannel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AEAudioUnitChannel.m; sourceTree = "<group>"; };
+		4C99588416BB74720011FB01 /* AEAudioUnitChannel.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AEAudioUnitChannel.mm; sourceTree = "<group>"; };
 		4C99588B16C0825E0011FB01 /* AEAudioUnitFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AEAudioUnitFilter.h; sourceTree = "<group>"; };
 		4C99588C16C0825F0011FB01 /* AEAudioUnitFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AEAudioUnitFilter.m; sourceTree = "<group>"; };
 		4CA689B11541EF4A00AF8DDD /* AELimiter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AELimiter.h; path = Modules/AELimiter.h; sourceTree = "<group>"; };
@@ -468,11 +468,11 @@
 				4C12CC98151D1EDA00562E2A /* AEUtilities.h */,
 				4C12CC99151D1EDA00562E2A /* AEUtilities.m */,
 				4C4B11F216833FDD00A3BA2E /* AEBlockChannel.h */,
-				4C4B11F316833FDD00A3BA2E /* AEBlockChannel.m */,
+				4C4B11F316833FDD00A3BA2E /* AEBlockChannel.mm */,
 				4C99588B16C0825E0011FB01 /* AEAudioUnitFilter.h */,
 				4C99588C16C0825F0011FB01 /* AEAudioUnitFilter.m */,
 				4C99588316BB74720011FB01 /* AEAudioUnitChannel.h */,
-				4C99588416BB74720011FB01 /* AEAudioUnitChannel.m */,
+				4C99588416BB74720011FB01 /* AEAudioUnitChannel.mm */,
 				4CEC0EB716B5294200D11ED9 /* AEBlockFilter.h */,
 				4CEC0EB816B5294300D11ED9 /* AEBlockFilter.m */,
 				4C456B8B16D59365008ED99D /* AEBlockAudioReceiver.h */,
@@ -699,11 +699,11 @@
 				17BB5B571BECD1D9007A2892 /* AEUtilities.h in Sources */,
 				17BB5B581BECD1D9007A2892 /* AEUtilities.m in Sources */,
 				17BB5B591BECD1D9007A2892 /* AEBlockChannel.h in Sources */,
-				17BB5B5A1BECD1D9007A2892 /* AEBlockChannel.m in Sources */,
+				17BB5B5A1BECD1D9007A2892 /* AEBlockChannel.mm in Sources */,
 				17BB5B5B1BECD1D9007A2892 /* AEAudioUnitFilter.h in Sources */,
 				17BB5B5C1BECD1D9007A2892 /* AEAudioUnitFilter.m in Sources */,
 				17BB5B5D1BECD1D9007A2892 /* AEAudioUnitChannel.h in Sources */,
-				17BB5B5E1BECD1D9007A2892 /* AEAudioUnitChannel.m in Sources */,
+				17BB5B5E1BECD1D9007A2892 /* AEAudioUnitChannel.mm in Sources */,
 				17BB5B5F1BECD1D9007A2892 /* AEBlockFilter.h in Sources */,
 				17BB5B601BECD1D9007A2892 /* AEBlockFilter.m in Sources */,
 				17BB5B611BECD1D9007A2892 /* AEBlockAudioReceiver.h in Sources */,
@@ -794,12 +794,12 @@
 				4C70F9AB1BB0D2FE0064CF73 /* AELowShelfFilter.m in Sources */,
 				4C698CFD162B02EF008B159D /* TPCircularBuffer+AudioBufferList.c in Sources */,
 				F6A5CD9A1DED70920053F204 /* AEExpanderFilter.m in Sources */,
-				4C4B11F516833FDD00A3BA2E /* AEBlockChannel.m in Sources */,
+				4C4B11F516833FDD00A3BA2E /* AEBlockChannel.mm in Sources */,
 				4C8AED0516B3644500958034 /* AEFloatConverter.m in Sources */,
 				4CEC0EBA16B5294300D11ED9 /* AEBlockFilter.m in Sources */,
 				4C70F9A71BB0D2FE0064CF73 /* AEHighShelfFilter.m in Sources */,
 				F6A5CD9B1DED70950053F204 /* AEPlaythroughChannel.m in Sources */,
-				4C99588616BB74720011FB01 /* AEAudioUnitChannel.m in Sources */,
+				4C99588616BB74720011FB01 /* AEAudioUnitChannel.mm in Sources */,
 				4CB2273B1D0E5FD100B1135F /* AERealtimeWatchdog-simulator-x86_64.s in Sources */,
 				4C99588E16C0825F0011FB01 /* AEAudioUnitFilter.m in Sources */,
 				4C456B8E16D59365008ED99D /* AEBlockAudioReceiver.m in Sources */,
@@ -821,9 +821,9 @@
 				4CCAFF001C0BCFF100B87416 /* AEAudioBufferManager.m in Sources */,
 				4C13AA9E1BB0FC9900DE05E0 /* AEMemoryBufferPlayer.m in Sources */,
 				7A5687181B54617200243427 /* AEUtilities.m in Sources */,
-				7A5687191B54617200243427 /* AEBlockChannel.m in Sources */,
+				7A5687191B54617200243427 /* AEBlockChannel.mm in Sources */,
 				7A56871A1B54617200243427 /* AEAudioUnitFilter.m in Sources */,
-				7A56871B1B54617200243427 /* AEAudioUnitChannel.m in Sources */,
+				7A56871B1B54617200243427 /* AEAudioUnitChannel.mm in Sources */,
 				7A56871C1B54617200243427 /* AEBlockFilter.m in Sources */,
 				7A56871D1B54617200243427 /* AEBlockAudioReceiver.m in Sources */,
 				7A56871E1B54617200243427 /* AEFloatConverter.m in Sources */,
@@ -984,6 +984,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
@@ -1011,6 +1013,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;

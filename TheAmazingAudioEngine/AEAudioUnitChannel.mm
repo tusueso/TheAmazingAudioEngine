@@ -25,6 +25,9 @@
 
 #import "AEAudioUnitChannel.h"
 #import "AEUtilities.h"
+#import <Accelerate/Accelerate.h>
+#include <stdio.h>
+#include <atomic>
 
 @interface AEAudioUnitChannel () {
     AudioComponentDescription _componentDescription;
@@ -38,7 +41,12 @@
 @property (nonatomic, strong) NSMutableDictionary * savedParameters;
 @end
 
-@implementation AEAudioUnitChannel
+@implementation AEAudioUnitChannel {
+    std::atomic<float> _average;
+    std::atomic<bool> _resetMetering;
+    int _accumulatorCount;
+    float _accumulator;
+}
 @synthesize audioGraphNode = _node;
 
 - (id)initWithComponentDescription:(AudioComponentDescription)audioComponentDescription {
@@ -102,15 +110,16 @@ AudioUnit AEAudioUnitChannelGetAudioUnit(__unsafe_unretained AEAudioUnitChannel 
         }
         
         AudioComponentDescription audioConverterDescription = AEAudioComponentDescriptionMake(kAudioUnitManufacturer_Apple, kAudioUnitType_FormatConverter, kAudioUnitSubType_AUConverter);
+        AudioUnitConnection auConnection = (AudioUnitConnection) {
+            .sourceAudioUnit = _audioUnit,
+            .sourceOutputNumber = 0,
+            .destInputNumber = 0
+        };
         if ( !AECheckOSStatus(result=AUGraphAddNode(_audioGraph, &audioConverterDescription, &_converterNode), "AUGraphAddNode") ||
             !AECheckOSStatus(result=AUGraphNodeInfo(_audioGraph, _converterNode, NULL, &_converterUnit), "AUGraphNodeInfo") ||
             !AECheckOSStatus(result=AudioUnitSetProperty(_converterUnit, kAudioUnitProperty_StreamFormat, kAudioUnitScope_Output, 0, &audioDescription, sizeof(AudioStreamBasicDescription)), "AudioUnitSetProperty(kAudioUnitProperty_StreamFormat)") ||
             !AECheckOSStatus(result=AudioUnitSetProperty(_converterUnit, kAudioUnitProperty_MaximumFramesPerSlice, kAudioUnitScope_Global, 0, &maxFPS, sizeof(maxFPS)), "kAudioUnitProperty_MaximumFramesPerSlice") ||
-            !AECheckOSStatus(result=AudioUnitSetProperty(_converterUnit, kAudioUnitProperty_MakeConnection, kAudioUnitScope_Input, 0, &(AudioUnitConnection) {
-            .sourceAudioUnit = _audioUnit,
-            .sourceOutputNumber = 0,
-            .destInputNumber = 0
-        }, sizeof(AudioUnitConnection)), "kAudioUnitProperty_MakeConnection") ) {
+            !AECheckOSStatus(result=AudioUnitSetProperty(_converterUnit, kAudioUnitProperty_MakeConnection, kAudioUnitScope_Input, 0, &auConnection, sizeof(AudioUnitConnection)), "kAudioUnitProperty_MakeConnection") ) {
             AUGraphRemoveNode(_audioGraph, _node);
             _node = 0;
             _audioUnit = NULL;
@@ -204,11 +213,47 @@ static OSStatus renderCallback(__unsafe_unretained AEAudioUnitChannel *THIS,
     
     AudioUnitRenderActionFlags flags = 0;
     AECheckOSStatus(AudioUnitRender(THIS->_converterUnit ? THIS->_converterUnit : THIS->_audioUnit, &flags, time, 0, frames, audio), "AudioUnitRender");
+    
+    //
+    // metering
+    //
+    AEAudioUnitChannel* channel = THIS;
+    if (channel->_resetMetering) {
+        channel->_accumulatorCount =
+        channel->_accumulator = 0;
+        channel->_resetMetering = false;
+    }
+    for (int i = 0; i < audio->mNumberBuffers; i++) {
+        float avg = 0.0;
+        vDSP_meamgv((float*)audio->mBuffers[i].mData, 1, &avg, frames);
+        channel->_accumulator += avg;
+        channel->_accumulatorCount++;
+    }
+    channel->_average = channel->_accumulator / (double)channel->_accumulatorCount;
     return noErr;
 }
 
 -(AEAudioRenderCallback)renderCallback {
     return renderCallback;
+}
+
+
+- (float) averagePowerLevel {
+    
+    _resetMetering = true;
+    /*float result = (20.0f*log10f(_average));
+     NSLog(@"%@", @(result));*/
+    return (20.0f*log10f(_average));
+}
+
+
+- (float) normalizedAveragePowerLevel {
+    
+    float average = [self averagePowerLevel];
+    float result;
+    double range = 80; // 0 -> -80 db; 1 -> 0 dB
+    result = MAX(0,(range+average)/range);
+    return result*_volume;
 }
 
 @end

@@ -129,6 +129,12 @@ AudioUnit AEAudioUnitChannelGetAudioUnit(__unsafe_unretained AEAudioUnitChannel 
  */
 @property (nonatomic, readonly) AUNode audioGraphNode;
 
+/*
+ *  the power level, averaged since last call
+ */
+- (float) averagePowerLevel;
+- (float) normalizedAveragePowerLevel;
+
 @end
 
 #ifdef __cplusplus

@@ -24,40 +24,95 @@
 //
 
 #import "AEBlockChannel.h"
+#import <Accelerate/Accelerate.h>
+#include <stdio.h>
+#include <atomic>
 
 @interface AEBlockChannel ()
 @property (nonatomic, copy) AEBlockChannelBlock block;
 @end
 
-@implementation AEBlockChannel
+@implementation AEBlockChannel {
+    std::atomic<float> _average;
+    std::atomic<bool> _resetMetering;
+    int _accumulatorCount;
+    float _accumulator;
+}
 @synthesize block = _block;
 
 - (id)initWithBlock:(AEBlockChannelBlock)block {
+    
     if ( !(self = [super init]) ) self = nil;
     self.volume = 1.0;
     self.pan = 0.0;
     self.block = block;
     self.channelIsMuted = NO;
     self.channelIsPlaying = YES;
+    _average = -500;
+    _resetMetering = NO;
+    _accumulatorCount = 0;
+    _accumulator = 0;
     return self;
 }
 
 + (AEBlockChannel*)channelWithBlock:(AEBlockChannelBlock)block {
+    
     return [[AEBlockChannel alloc] initWithBlock:block];
 }
 
 
-static OSStatus renderCallback(__unsafe_unretained AEBlockChannel *THIS,
+-(AEAudioRenderCallback)renderCallback {
+    
+    return renderCallback;
+}
+
+static OSStatus renderCallback(__unsafe_unretained AEBlockChannel *channel,
                                __unsafe_unretained AEAudioController *audioController,
                                const AudioTimeStamp     *time,
                                UInt32                    frames,
                                AudioBufferList          *audio) {
-    THIS->_block(time, frames, audio);
+    
+    //
+    // render audio
+    //
+    channel->_block(time, frames, audio);
+    
+    //
+    // metering
+    //
+    if (channel->_resetMetering) {
+        channel->_accumulatorCount =
+        channel->_accumulator = 0;
+        channel->_resetMetering = false;
+    }
+    for (int i = 0; i < audio->mNumberBuffers; i++) {
+        float avg = 0.0;
+        vDSP_meamgv((float*)audio->mBuffers[i].mData, 1, &avg, frames);
+        channel->_accumulator += avg;
+        channel->_accumulatorCount++;
+    }
+    channel->_average = channel->_accumulator / (double)channel->_accumulatorCount;
+    
     return noErr;
 }
 
--(AEAudioRenderCallback)renderCallback {
-    return renderCallback;
+
+- (float) averagePowerLevel {
+    
+    _resetMetering = true;
+    /*float result = (20.0f*log10f(_average));
+    NSLog(@"%@", @(result));*/
+    return (20.0f*log10f(_average));
+}
+
+
+- (float) normalizedAveragePowerLevel {
+    
+    float average = [self averagePowerLevel];
+    float result;
+    double range = 80; // 0 -> -80 db; 1 -> 0 dB
+    result = MAX(0,(range+average)/range);
+    return result*_volume;
 }
 
 @end
